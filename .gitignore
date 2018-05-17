@@ -13,3 +13,4 @@ src/tmp/
 *.mem
 *.pyc
 *.class
+.idea/
