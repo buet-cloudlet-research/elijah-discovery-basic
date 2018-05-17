@@ -38,6 +38,9 @@ class Cloudlet(models.Model):
     def __getitem__(self, item):
         return self.__dict__[item]
 
+    def __unicode__(self):
+        return self.ip_address
+
     def search_out(self):
         ret_dict = dict()
         ret_dict['ip_address'] = self.ip_address

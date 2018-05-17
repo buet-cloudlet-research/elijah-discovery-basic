@@ -114,7 +114,6 @@ class CPUMonitor:
         result= 100 - (delta[len(delta)-1]*100.00/sum(delta))
         return result
 
-
 if __name__ == "__main__":
     from pprint import pprint
     monitor = get_instance()

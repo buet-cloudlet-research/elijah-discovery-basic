@@ -34,7 +34,7 @@ from elijah.discovery.monitor import resource
 from elijah.discovery.monitor.resource import ResourceMonitorError
 from elijah.discovery import log as logging
 from elijah.discovery.config import DiscoveryConst as DiscoveryConst
-from elijah.discovery.Const import DiscoveryConst as RestConst
+from elijah.discovery.config import DiscoveryConst as RestConst
 
 from flask import Flask
 from flask.ext import restful
@@ -153,11 +153,13 @@ def main(argv):
     try:
         # cloudlet machine monitor
         LOG.info("Start resource monitoring")
-        resource_monitor = resource.get_instance()
-        resource_monitor.start()
+
+        resource_stats = resource.ResourceMonitor()
+        #resource_monitor = resource.get_instance()
+        #resource_monitor.start()
 
         # Start registration client
-        register_client = EmulRegisterThread(register_server, resource_monitor,
+        register_client = EmulRegisterThread(register_server, resource_stats,
                 cloudlet_ip=get_local_ipaddress(),
                 cloudlet_rest_port=settings.rest_port,
                 gps_filename=infile)
