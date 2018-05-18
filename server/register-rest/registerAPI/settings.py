@@ -23,14 +23,15 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'OPTIONS': {
-            'read_default_file': './mysql.conf',
-            },
-        #'NAME': 'cloudlet_registration',                      # Or path to database file if using sqlite3.
-        #'USER': '',                      # Not used with sqlite3.
-        #'PASSWORD': '',                  # Not used with sqlite3.
-        #'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        #'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        # 'OPTIONS': {
+        #     'read_default_file': './mysql.conf',
+        #     },
+        'NAME': os.environ.get('DATABASE_NAME', 'cloudlet_registration'),                      # Or path to database file if using sqlite3.
+        'USER': os.environ.get('DATABASE_USER', 'cloudlet_user'),                      # Not used with sqlite3.
+        'PASSWORD': os.environ.get('DATABASE_USER_PASSWORD', ''),                  # Not used with sqlite3.
+        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': os.environ.get('DATABASE_PORT', 'localhost'),                      # Set to empty string for default. Not used with sqlite3.
+
     }
 }
 
