@@ -130,7 +130,6 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'cloudlet',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -141,6 +140,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'cloudlet',
 )
 
 # A sample logging configuration. The only tangible logging
