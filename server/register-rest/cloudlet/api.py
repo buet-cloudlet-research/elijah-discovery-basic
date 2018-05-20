@@ -49,26 +49,26 @@ class CloudletResource(ModelResource):
         '''
         return super(CloudletResource, self).obj_create(bundle, **kwargs)
 
-    # def hydrate(self, bundle):
-    #     '''
-    #     called for POST, UPDATE
-    #     '''
-    #     cloudlet_ip = bundle.request.META.get("REMOTE_ADDR")
-    #     if cloudlet_ip == "127.0.0.1":
-    #         import socket
-    #         cloudlet_ip = socket.gethostbyname(socket.gethostname())
-    #
-    #     # find location of cloudlet
-    #     location = cost.ip2location(cloudlet_ip)
-    #     # in python 2.6, you cannot directly convert float to Decimal
-    #     if bundle.obj.longitude is None or len(bundle.obj.longitude) == 0:
-    #         bundle.obj.longitude = str(location.longitude).strip()
-    #     if bundle.obj.latitude is None or len(bundle.obj.latitude) == 0:
-    #         bundle.obj.latitude = str(location.latitude).strip()
-    #
-    #     # record Cloudlet's ip address
-    #     bundle.obj.mod_time = now()
-    #     return bundle
+    def hydrate(self, bundle):
+        '''
+        called for POST, UPDATE
+        '''
+        cloudlet_ip = bundle.request.META.get("REMOTE_ADDR")
+        if cloudlet_ip == "127.0.0.1":
+            import socket
+            cloudlet_ip = socket.gethostbyname(socket.gethostname())
+
+        # find location of cloudlet
+        location = cost.ip2location(cloudlet_ip)
+        # in python 2.6, you cannot directly convert float to Decimal
+        if bundle.obj.longitude is None or len(bundle.obj.longitude) == 0:
+            bundle.obj.longitude = str(location.longitude).strip()
+        if bundle.obj.latitude is None or len(bundle.obj.latitude) == 0:
+            bundle.obj.latitude = str(location.latitude).strip()
+
+        # record Cloudlet's ip address
+        bundle.obj.mod_time = now()
+        return bundle
 
     def dehydrate(self, bundle):
         '''
